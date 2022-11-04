@@ -15,6 +15,9 @@ body {
   background-position-y: 55%;
 }
 
+body *{
+  font-family: 'Roboto', sans-serif;
+}
 #app {
   width: fit-content; /*Ajusta ao conteudo da div*/
   margin: 52px auto;
@@ -35,6 +38,7 @@ header {
 .card h2{
   display: flex;
   gap: 16px;
+  align-items: center;
   justify-content: center;
 
   padding: 8px 16px;
@@ -51,5 +55,28 @@ header {
 .card h2 span{
   color: #E1E1E6;
   font-size: 14px;
-  text-transform: uppercase;
+  text-transform: uppercase; /*texto todo em caixa alta*/
+}
+
+.card ul{
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  width: 270px;
+}
+
+.card ul li{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color:#E1E1E6;
+  font-weight: 900;
+  font-size: 36px;
+  line-height: 125%;
+}
+
+.card ul li + li { /*um li que contenha um li antes dele*/
+  padding-top: 24px;
+  border-top: 1px solid #323238;
 }
