@@ -4,23 +4,49 @@
   box-sizing: border-box;
 }
 
+:root{
+  --card-title-border-color: #746615;
+  --card-color-primary: #f7dd43;
+  --card-bg-color: #1d1c19; 
+  --bg: url(./assets/bg-yellow.svg);
+  
+}
+
+body.blue{ /*nesse caso tem que ser junto*/
+  --card-title-border-color: #338af3;
+  --card-color-primary: #338af3;
+  --card-bg-color: #202024; 
+  --bg: url(./assets/bg-blue.svg);
+}
+
+body.green{
+  --card-title-border-color: #047c3f;
+  --card-color-primary: #047c3f;
+  --card-bg-color: #1a1f1b; 
+  --bg: url(./assets/bg-green.svg);
+}
+
 ul {
   list-style: none;
 }
 
 body {
   background-color: #121214;
-  background-image: url(./assets/bg.svg);
-  background-position-x: center;
-  background-position-y: -715px;
+  background-image: var(--bg);
+  background-position: top center; /*short hand:  agrupamento de eixo x e y*/
+  background-repeat: no-repeat;
+  background-size: cover;
+  
 }
 
 body *{
   font-family: 'Roboto', sans-serif;
 }
+
 #app {
   width: fit-content; /*Ajusta ao conteudo da div*/
-  margin: 52px auto;
+  margin: auto;
+  padding-top: 52px;
 }
 
 header {
@@ -28,7 +54,7 @@ header {
   text-align: center;
 }
 
-#cards{
+#cards {
   display: flex;
   flex-direction: column;
   gap: 32px;
@@ -38,10 +64,11 @@ header {
   padding: 32px 23px;
   text-align: center;
 
-  background: #1d1c19;
-  border-bottom: 2px solid #f7dd43;
+  background: var(--card-bg-color);
+  border-bottom: 2px solid var(--card-color-primary);
   border-radius: 6px;
 }
+
 .card h2{
   display: flex;
   gap: 16px;
@@ -49,7 +76,7 @@ header {
   justify-content: center;
 
   padding: 8px 16px;
-  border: 1px solid #746615;
+  border: 1px solid var(--card-title-border-color);
   border-radius: 6px;    
 
   width: fit-content;
@@ -76,14 +103,59 @@ header {
 .card ul li{
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  color:#E1E1E6;
+  align-items: center;  
+}
+
+.card ul li strong{
   font-weight: 900;
   font-size: 36px;
   line-height: 125%;
+  color:#E1E1E6;
 }
 
 .card ul li + li { /*um li que contenha um li antes dele*/
   padding-top: 24px;
   border-top: 1px solid #323238;
+}
+
+.card h2:hover,
+.card ul li strong:hover, 
+.card ul li img:hover{
+  transform: scale(1.1); /*aumenta o tamanho quando passa o mouse encima*/
+}
+
+.card h2,
+.card ul li strong, 
+.card ul li img{
+  transition: transform 0.3s; /*transform será a propriedade a ser transicionada*/
+}
+
+.card {
+  animation: appear 1s; /*nome da animação que eu criei no keyframe abaixo, e a duração da animação*/
+}
+
+.card:nth-child(2){
+  animation-delay: .2s;
+}
+
+.card:nth-child(3){
+  animation-delay: .4s; 
+}
+
+@keyframes appear{ 
+  0%{
+    transform: translateY(-50px); /*não preciso retirar no 100% pq ele entende isso automaticamente*/
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+@media (min-width: 700px){
+  #cards{
+    max-width: 670px;
+    flex-direction: row;
+    flex-wrap: wrap; /*Desce pra outra linha, e nesse caso pega o tamanho da propriedade max-width*/
+  }
 }
